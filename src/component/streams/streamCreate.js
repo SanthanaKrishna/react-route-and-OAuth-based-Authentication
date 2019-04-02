@@ -2,36 +2,54 @@ import React from 'react';
 import { Formik, FormikProps, withFormik, Field, Form } from 'formik';
 import * as Yup from "yup";
 
-const HandleForm
 
-class StreamCreate extends React.Component {
-    handleSubmit = (values, {
-        props = this.props,
-        setSubmitting
-    }) => {
-        setSubmitting(false);
-        retrun;
+export class StreamCreate extends React.Component {
+    onTitleChange = () => {
+
     }
     render() {
         return (
-            <Formik
-                initialValues={}
-                validate={}
-                onSubmit={}
-                render={
-                    (formProps: FormikProps) => {
-                        <Form>
-                            <Field/>
+            <div>
+                <Formik
+                    initialValues={{
+                        title: '',
+                        description: ''
+                    }}
+                    onSubmit={(value) => {
+                        setTimeout(() => {
+                            alert(JSON.stringify(value));
+                        }, 2000);
+                    }}
+                    validationSchema={{}}
+                    render={(props) => (
+
+                        <Form onSubmit={props.handleSubmit}>
+                            <div>
+                                <lable htmlfor="title">
+                                    Title
+                                </lable> <br />
+                                <Field
+                                    type="text"
+                                    name="title"
+                                    value=
+                                    onChange={this.onTitleChange}
+                                />
+                            </div>
+                            <div>
+                                <label hrmlfor="description">
+                                    Description
+                                </label>
+                                <br />
+                                <Field type="text" name="description" />
+                            </div>
+                            <button type="submit">Submit</button>
                         </Form>
-                    }
-
-                }
-            >
-
-            </Formik>
+                    )}
+                />
+            </div>
         )
 
     }
 };
 
-export default StreamCreate;
+// export default StreamCreate;
