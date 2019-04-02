@@ -7,6 +7,9 @@ export class StreamCreate extends React.Component {
     onTitleChange = () => {
 
     }
+    onDescriptionChange = () => {
+
+    }
     render() {
         return (
             <div>
@@ -15,34 +18,44 @@ export class StreamCreate extends React.Component {
                         title: '',
                         description: ''
                     }}
-                    onSubmit={(value) => {
+                    onSubmit={(value,event) => {
+                        console.log('value',value)
                         setTimeout(() => {
                             alert(JSON.stringify(value));
                         }, 2000);
                     }}
-                    validationSchema={{}}
-                    render={(props) => (
+                    // validate=(props)=>{
 
-                        <Form onSubmit={props.handleSubmit}>
-                            <div>
+                    // }
+                    render={({ values, errors, handleSubmit, handleChange, setFieldValue, setFieldError }) => (
+
+                        <Form className="ui form" onSubmit={handleSubmit}>
+                            <div className="field">
                                 <lable htmlfor="title">
                                     Title
-                                </lable> <br />
+                                </lable>
                                 <Field
                                     type="text"
                                     name="title"
-                                    value=
-                                    onChange={this.onTitleChange}
+                                    value={values.title}
+                                    onChange={handleChange}
+                                //onChange={(ev) => this.onTitleChange(ev, setFieldValue)}
                                 />
                             </div>
-                            <div>
+                            <div className="field">
                                 <label hrmlfor="description">
                                     Description
                                 </label>
-                                <br />
-                                <Field type="text" name="description" />
+                                <Field
+                                    type="text"
+                                    name="description"
+                                    value={values.description}
+                                    onChange={handleChange}
+                                // onChange={(ev) => onDescriptionChange(ev, setFieldValue)} 
+
+                                />
                             </div>
-                            <button type="submit">Submit</button>
+                            <button className="ui button primary" type="submit">Submit</button>
                         </Form>
                     )}
                 />
