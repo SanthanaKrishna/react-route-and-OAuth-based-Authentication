@@ -6,7 +6,6 @@ import { StreamCreate } from './component/streams/streamCreate';
 import { StreamEdit } from './component/streams/streamEdit';
 import { StreamDelete } from './component/streams/streamDelete';
 import { StreamShow } from './component/streams/streaShow';
-import UserDetails from './component/createAccount/userDetails';
 export const App = () => {
     return (
         <BrowserRouter>
@@ -18,7 +17,6 @@ export const App = () => {
                 <Route path='/streamedit' component={StreamEdit} />
                 <Route path='/streamdelete' component={StreamDelete} />
                 <Route path='/streamshow' component={StreamShow} />
-                <Route exact path='/userdetails' component={UserDetails} />
                 {/* </Switch> */}
             </div>
         </BrowserRouter>
