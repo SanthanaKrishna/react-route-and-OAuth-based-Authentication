@@ -6,7 +6,6 @@ import { StreamCreate } from './component/streams/streamCreate';
 import { StreamEdit } from './component/streams/streamEdit';
 import { StreamDelete } from './component/streams/streamDelete';
 import { StreamShow } from './component/streams/streaShow';
-
 export const App = () => {
     return (
         <BrowserRouter>
