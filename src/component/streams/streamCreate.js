@@ -1,8 +1,9 @@
 import React from 'react';
 import { Formik, FormikProps, withFormik, Field, Form, ErrorMessage } from 'formik';
+import { connect } from 'react-redux';
+import { createStream } from "../../actions";
 
-
-export class StreamCreate extends React.Component {
+class StreamCreate extends React.Component {
     onFieldChange = (event, setFieldValue) => {
         console.log('onFieldChange', event)
         const { name, value } = event.target;
@@ -30,6 +31,7 @@ export class StreamCreate extends React.Component {
                         description: ''
                     }}
                     onSubmit={(value) => {
+                        this.props.createStream(value)
                         console.log('value', value)
                         setTimeout(() => {
                             alert(JSON.stringify(value));
@@ -77,5 +79,7 @@ export class StreamCreate extends React.Component {
 
     }
 };
-
-// export default StreamCreate;
+// const mapStateToProps=(state)=>{
+//     return state;
+// }
+export default connect(null, { createStream })(StreamCreate);
