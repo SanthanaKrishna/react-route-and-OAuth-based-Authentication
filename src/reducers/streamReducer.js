@@ -9,14 +9,12 @@ import _ from "lodash";
 //     isLoading: true,
 // }
 
-
 export default (state = {}, action) => {
     switch (action.type) {
         case GET_STREAMS:
             return {
                 ...state, ..._.mapKeys(action.payload, 'id')
             }
-
         case FETCH_STREAM:
             return {
                 ...state,
