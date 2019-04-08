@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import Header from './component/header';
 import StreamList from './component/streams/streamList';
 import StreamCreate from './component/streams/streamCreate';
-import { StreamEdit } from './component/streams/streamEdit';
+import StreamEdit from './component/streams/streamEdit';
 import { StreamDelete } from './component/streams/streamDelete';
 import { StreamShow } from './component/streams/streaShow';
 import history from './history';

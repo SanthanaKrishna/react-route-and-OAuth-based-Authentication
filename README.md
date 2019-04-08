@@ -43,3 +43,5 @@ Intentional Navigation
 
 Pogrammatic Navigation
     we run code to forcibly(fourcely get navigate) navigate the user through our app
+
+with React-Router, each component needs to be designed to work in isolation,(fetch its own data!)

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Formik, FormikProps, withFormik, Field, Form } from 'formik';
+import { connect } from 'react-redux';
+import { fetchStream } from '../../actions';
 
-
-export class StreamEdit extends React.Component{
+class StreamEdit extends React.Component {
+    componentDidMount() {
+        this.props.fetchStream(this.props.match.params.id)
+    }
     render() {
         return (
             <div>
@@ -23,7 +27,7 @@ export class StreamEdit extends React.Component{
                             <div className="field">
                                 <lable htmlfor="title">
                                     Title
-                                </lable> 
+                                </lable>
                                 <Field
                                     type="text"
                                     name="title"
@@ -54,5 +58,12 @@ export class StreamEdit extends React.Component{
 
     }
 };
-
- 
+//state: show how applation state
+// 2nd params ownProps: i=show state inside the required component 
+const mapStateToProps = (state, ownProps) => {
+    console.log("state", state);
+    console.log("ownProps", ownProps);
+    const { streams } = state;
+    return { stream: streams[ownProps.match.params.id] }
+}
+export default connect(mapStateToProps,{fetchStream})(StreamEdit);
