@@ -1,23 +1,35 @@
 import React from 'react';
 import { Formik, FormikProps, withFormik, Field, Form } from 'formik';
 import { connect } from 'react-redux';
-import { fetchStream } from '../../actions';
+import { fetchStream, editStream } from '../../actions';
+import { Stream } from 'stream';
 
 class StreamEdit extends React.Component {
     componentDidMount() {
         this.props.fetchStream(this.props.match.params.id)
     }
+
+
+
     render() {
+        console.log("this.props", this.props);
+        const {stream}=this.props;
+        if (!this.props.stream) {
+            return <div> loading ....</div>
+        }
+
         return (
             <div>
+                <h3>Edit Stream</h3>
                 <Formik
                     initialValues={{
-                        title: '',
-                        description: ''
+                        title: stream.title,
+                        description: stream.description
                     }}
-                    onSubmit={(value) => {
+                    onSubmit={(values) => {
+                        this.props.editStream(this.props.match.params.id, values)
                         setTimeout(() => {
-                            alert(JSON.stringify(value));
+                            alert(JSON.stringify(values));
                         }, 2000);
                     }}
                     validationSchema={{}}
@@ -25,7 +37,7 @@ class StreamEdit extends React.Component {
 
                         <Form className="ui form" onSubmit={handleSubmit}>
                             <div className="field">
-                                <lable htmlfor="title">
+                                <lable htmlFor="title">
                                     Title
                                 </lable>
                                 <Field
@@ -37,7 +49,7 @@ class StreamEdit extends React.Component {
                                 />
                             </div>
                             <div className="field">
-                                <label hrmlfor="description">
+                                <label hrmlFor="description">
                                     Description
                                 </label>
                                 <Field
@@ -61,9 +73,9 @@ class StreamEdit extends React.Component {
 //state: show how applation state
 // 2nd params ownProps: i=show state inside the required component 
 const mapStateToProps = (state, ownProps) => {
-    console.log("state", state);
-    console.log("ownProps", ownProps);
-    const { streams } = state;
-    return { stream: streams[ownProps.match.params.id] }
+    const {streams} = state
+    return {
+        stream :streams[ownProps.match.params.id]
+    }
 }
-export default connect(mapStateToProps,{fetchStream})(StreamEdit);
+export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);
