@@ -4,7 +4,7 @@ import Header from './component/header';
 import StreamList from './component/streams/streamList';
 import StreamCreate from './component/streams/streamCreate';
 import StreamEdit from './component/streams/streamEdit';
-import { StreamDelete } from './component/streams/streamDelete';
+import StreamDelete from './component/streams/streamDelete';
 import { StreamShow } from './component/streams/streaShow';
 import history from './history';
 
@@ -17,7 +17,7 @@ export const App = () => {
                 <Route exact path='/' component={StreamList} />
                 <Route path='/streamnew' component={StreamCreate} />
                 <Route path='/streamedit/:id' component={StreamEdit} />
-                <Route path='/streamdelete' component={StreamDelete} />
+                <Route path='/streamdelete/:id' component={StreamDelete} />
                 <Route path='/streamshow' component={StreamShow} />
                 {/* </Switch> */}
             </div>

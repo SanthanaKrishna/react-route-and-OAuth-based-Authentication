@@ -53,7 +53,6 @@ class StreamCreate extends React.Component {
                 />
             </div>
         )
-
     }
 };
 // const mapStateToProps=(state)=>{

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getStreams } from '../../actions';
 
-class StreamList extends React.Component { 
+class StreamList extends React.Component {
     componentDidMount() {
         this.props.getStreams();
     }
@@ -17,7 +17,7 @@ class StreamList extends React.Component {
                         {stream.title}
                         <div className="description">{stream.description}</div>
                     </div>
-                     {this.renderAdmin(stream)}
+                    {this.renderAdmin(stream)}
                 </div>
             )
         })
@@ -26,8 +26,8 @@ class StreamList extends React.Component {
         if (stream.userId === this.props.currentUserId) {
             return (
                 <div className="right floated content">
-                   <Link to={`/streamedit/${stream.id}`} className="ui button primary">Edit </Link>
-                    <button className="ui button negative">Delete</button>
+                    <Link to={`/streamedit/${stream.id}`} className="ui button primary">Edit </Link>
+                    <Link to={`/streamdelete/${stream.id}`} className="ui button negative">Delete</Link>
                 </div>
             )
         }
