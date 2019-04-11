@@ -3,17 +3,21 @@ import { Formik, FormikProps, withFormik, Field, Form } from 'formik';
 import { connect } from 'react-redux';
 import { fetchStream, editStream } from '../../actions';
 import { Stream } from 'stream';
+import StreamForm from './streamForm';
 
 class StreamEdit extends React.Component {
     componentDidMount() {
         this.props.fetchStream(this.props.match.params.id)
     }
-
+    onFieldChange = (event, setFieldValue) => {
+        const { name, value } = event.target;
+        setFieldValue(name, value);
+    }
 
 
     render() {
         console.log("this.props", this.props);
-        const {stream}=this.props;
+        const { stream } = this.props;
         if (!this.props.stream) {
             return <div> loading ....</div>
         }
@@ -36,31 +40,13 @@ class StreamEdit extends React.Component {
                     render={({ values, errors, handleSubmit, handleChange, setFieldValue, setFieldError }) => (
 
                         <Form className="ui form" onSubmit={handleSubmit}>
-                            <div className="field">
-                                <lable htmlFor="title">
-                                    Title
-                                </lable>
-                                <Field
-                                    type="text"
-                                    name="title"
-                                    value={values.title}
-                                    onChange={handleChange}
-                                //onChange={(ev) => this.onTitleChange(ev, setFieldValue)}
-                                />
-                            </div>
-                            <div className="field">
-                                <label hrmlFor="description">
-                                    Description
-                                </label>
-                                <Field
-                                    type="text"
-                                    name="description"
-                                    value={values.description}
-                                    onChange={handleChange}
-                                // onChange={(ev) => onDescriptionChange(ev, setFieldValue)} 
-
-                                />
-                            </div>
+                            <StreamForm
+                                values={values}
+                                errors={errors}
+                                setFieldValue={setFieldValue}
+                                setFieldError={setFieldError}
+                                onFieldChange={this.onFieldChange}
+                            />
                             <button type="submit">Submit</button>
                         </Form>
                     )}
@@ -73,9 +59,9 @@ class StreamEdit extends React.Component {
 //state: show how applation state
 // 2nd params ownProps: i=show state inside the required component 
 const mapStateToProps = (state, ownProps) => {
-    const {streams} = state
+    const { streams } = state
     return {
-        stream :streams[ownProps.match.params.id]
+        stream: streams[ownProps.match.params.id]
     }
 }
 export default connect(mapStateToProps, { fetchStream, editStream })(StreamEdit);
