@@ -5,7 +5,7 @@ import StreamList from './component/streams/streamList';
 import StreamCreate from './component/streams/streamCreate';
 import StreamEdit from './component/streams/streamEdit';
 import StreamDelete from './component/streams/streamDelete';
-import StreamShow from './component/streams/streaShow';
+import StreamShow from './component/streams/streamShow';
 import history from './history';
 
 export const App = () => {
